@@ -19,36 +19,68 @@ public class playerMovement : NetworkBehaviour
 
     public float jumpHeight = 3;
 
+    public Animator Animator;
+
     [Client]
     void Update()
     {
         if (hasAuthority)
         {
-            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
-            if (isGrounded && velocity.y < 0)
-            {
-                velocity.y = -2f;
-            }
-
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
 
-            Vector3 move = transform.right * x + transform.forward * z;
-
-            controller.Move(move * movevementSpeed * Time.deltaTime);
-
-            if (!isGrounded)
+            if (x != 0 || z != 0)
             {
-                velocity.y += gravity * Time.deltaTime;
+                Animator.SetBool("isWalking", true);
             }
-            else if (isGrounded && Input.GetButtonDown("Jump"))
+            else
             {
-                Debug.Log("test");
-                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+                Animator.SetBool("isWalking", false);
             }
 
-            controller.Move(velocity * Time.deltaTime);
+            bool jump;
+            if (Input.GetButtonDown("Jump"))
+            {
+                jump = true;
+            }
+            else
+            {
+                jump = false;
+            }
+
+            CmdMove(x, z, jump);
         }
+    }
+
+    [Command]
+    void CmdMove(float x, float z, bool jump)
+    {
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+
+        Vector3 move = transform.right * x + transform.forward * z;
+
+        if (!isGrounded)
+        {
+            velocity.y += gravity * Time.deltaTime;
+        }
+        else if (isGrounded && jump)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+
+        RpcMove(move, velocity);
+    }
+
+    [ClientRpc]
+    void RpcMove(Vector3 move, Vector3 velocity)
+    {
+        controller.Move(move * movevementSpeed * Time.deltaTime);
+
+        controller.Move(velocity * Time.deltaTime);
     }
 }
