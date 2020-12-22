@@ -3,13 +3,13 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - bullet
     - cameraControl
+    - health
     - playerMovement
+    - shoot
     Mirror.Components.dll:
     - Mirror.NetworkAnimator
     - Mirror.NetworkTransform
     - Mirror.NetworkTransformChild
-    Mirror.Editor.dll:
-    - Mirror.NetworkBehaviourInspector
     Mirror.dll:
     - Mirror.NetworkIdentity
     - Mirror.NetworkManager
@@ -18,14 +18,18 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
+    UnityEngine.UI.dll:
+    - UnityEngine.EventSystems.EventSystem
+    - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.CanvasScaler
+    - UnityEngine.UI.GraphicRaycaster
+    - UnityEngine.UI.Text
   sceneClasses:
     Assets/Scenes/movementTest.unity:
     - Class: 1
@@ -67,17 +71,25 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9684}
     - Class: 114
+      Script: {instanceID: 9688}
+    - Class: 114
       Script: {instanceID: 9704}
     - Class: 114
       Script: {instanceID: 9758}
     - Class: 114
       Script: {instanceID: 9878}
     - Class: 114
+      Script: {instanceID: 9896}
+    - Class: 114
       Script: {instanceID: 10356}
+    - Class: 114
+      Script: {instanceID: 10386}
     - Class: 114
       Script: {instanceID: 10416}
     - Class: 114
       Script: {instanceID: 10852}
+    - Class: 114
+      Script: {instanceID: 11344}
     - Class: 114
       Script: {instanceID: 11396}
     - Class: 114
@@ -85,14 +97,28 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11706}
     - Class: 114
-      Script: {instanceID: 14126}
+      Script: {instanceID: 11790}
+    - Class: 114
+      Script: {instanceID: 14076}
+    - Class: 114
+      Script: {instanceID: 16366}
+    - Class: 114
+      Script: {instanceID: 19082}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 137
       Script: {instanceID: 0}
     - Class: 143
       Script: {instanceID: 0}
     - Class: 157
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -427,7 +453,7 @@ ScriptsOnlyBuild:
     className: TMP_SpriteAsset
   - hash:
       serializedVersion: 2
-      Hash: efb608382f7ca08f8f6c668f7b2742a4
+      Hash: 999ca6b07e8cc764d72d9b54253b91d9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: bullet
@@ -989,8 +1015,20 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: cd80eda3cb8157542afa92bfce5b6f58
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: shoot
+  - hash:
+      serializedVersion: 2
+      Hash: fb606419fdf228b72b4329aed7a61753
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: health
   platform: 5
   scenePathNames:
   - Assets/Scenes/movementTest.unity
-  playerPath: F:/github repositories/project-fps/minor ase project fps/builds/v0.16
-    (new player model with basic animation)/minor ase project fps.exe
+  playerPath: F:/github repositories/project-fps/minor ase project fps/builds/v0.17
+    (shoot and take damage)/minor ase project fps.exe

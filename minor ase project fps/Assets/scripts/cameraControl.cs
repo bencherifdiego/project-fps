@@ -42,10 +42,10 @@ public class cameraControl : NetworkBehaviour
 
 
 
-            if (Input.GetButtonDown("Fire1"))
-            {
-                Cmd_shoot();
-            }
+            //if (Input.GetButtonDown("Fire1"))
+            //{
+            //    Cmd_shoot();
+            //}
         }
     }
 
@@ -54,7 +54,8 @@ public class cameraControl : NetworkBehaviour
     {
         GameObject bul = Instantiate(bullet, shootPoint.position, transform.rotation);
         bullet bl = bul.GetComponent<bullet>();
-        bl.bulletSpeed = 5;
+        bl.bulletSpeed = 5f;
+        bl.damage = 10f;
         NetworkServer.Spawn(bul);
     }
 }
