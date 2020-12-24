@@ -408,6 +408,8 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1940,6 +1942,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2453,7 +2457,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8286768942717887082}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -4.059}
+  m_LocalPosition: {x: 0, y: 1.5, z: -4.059}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 456490258719245222}
@@ -2917,6 +2921,8 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3017,10 +3023,15 @@ PrefabInstance:
       propertyPath: m_CullingMode
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3077494097226502824, guid: 01b55860e5c23c64eb41ceef6fbfeee5,
+    - target: {fileID: 1568571671508008511, guid: 01b55860e5c23c64eb41ceef6fbfeee5,
         type: 3}
-      propertyPath: m_Name
-      value: pistolTest
+      propertyPath: sceneId
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1568571671508008511, guid: 01b55860e5c23c64eb41ceef6fbfeee5,
+        type: 3}
+      propertyPath: m_AssetId
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2084653480082596027, guid: 01b55860e5c23c64eb41ceef6fbfeee5,
         type: 3}
@@ -3087,31 +3098,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.10000012
       objectReference: {fileID: 0}
-    - target: {fileID: 1568571671508008511, guid: 01b55860e5c23c64eb41ceef6fbfeee5,
+    - target: {fileID: 3077494097226502824, guid: 01b55860e5c23c64eb41ceef6fbfeee5,
         type: 3}
-      propertyPath: sceneId
-      value: 0
+      propertyPath: m_Name
+      value: pistolTest
       objectReference: {fileID: 0}
-    - target: {fileID: 1568571671508008511, guid: 01b55860e5c23c64eb41ceef6fbfeee5,
-        type: 3}
-      propertyPath: m_AssetId
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9055535935281367668, guid: 01b55860e5c23c64eb41ceef6fbfeee5,
-        type: 3}
-      propertyPath: bulletSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9055535935281367668, guid: 01b55860e5c23c64eb41ceef6fbfeee5,
-        type: 3}
-      propertyPath: timeBetweenShooting
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 9055535935281367668, guid: 01b55860e5c23c64eb41ceef6fbfeee5,
-        type: 3}
-      propertyPath: Animator
-      value: 
-      objectReference: {fileID: 5120462927523030490}
     - target: {fileID: 4734386686003424724, guid: 01b55860e5c23c64eb41ceef6fbfeee5,
         type: 3}
       propertyPath: m_Name
@@ -3142,6 +3133,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 9055535935281367668, guid: 01b55860e5c23c64eb41ceef6fbfeee5,
+        type: 3}
+      propertyPath: bulletSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9055535935281367668, guid: 01b55860e5c23c64eb41ceef6fbfeee5,
+        type: 3}
+      propertyPath: timeBetweenShooting
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 9055535935281367668, guid: 01b55860e5c23c64eb41ceef6fbfeee5,
+        type: 3}
+      propertyPath: Animator
+      value: 
+      objectReference: {fileID: 5120462927523030490}
     m_RemovedComponents:
     - {fileID: -1092814520272126851, guid: 01b55860e5c23c64eb41ceef6fbfeee5, type: 3}
     - {fileID: 1568571671508008511, guid: 01b55860e5c23c64eb41ceef6fbfeee5, type: 3}
