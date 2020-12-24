@@ -65,9 +65,11 @@
   <ItemGroup>
     <Compile Include="Assets\scripts\bullet.cs" />
     <Compile Include="Assets\scripts\cameraControl.cs" />
+    <Compile Include="Assets\scripts\gun.cs" />
     <Compile Include="Assets\scripts\health.cs" />
     <Compile Include="Assets\scripts\playerMovement.cs" />
     <Compile Include="Assets\scripts\shoot.cs" />
+    <Compile Include="Assets\scripts\shoot2.cs" />
     <None Include="Assets\ScriptTemplates\54-Mirror__Network Room Manager-NewNetworkRoomManager.cs.txt" />
     <None Include="Assets\ScriptTemplates\55-Mirror__Network Room Player-NewNetworkRoomPlayer.cs.txt" />
     <None Include="Assets\Mirror\Readme.txt" />
@@ -105,6 +107,12 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>F:/github repositories/project-fps/minor ase project fps/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
+      <HintPath>F:/github repositories/project-fps/minor ase project fps/Library/ScriptAssemblies/Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.AddOns.Editor">
+      <HintPath>F:/github repositories/project-fps/minor ase project fps/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>F:/unity/2019.2.13f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

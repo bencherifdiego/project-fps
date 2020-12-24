@@ -3,13 +3,16 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - bullet
     - cameraControl
+    - gun
     - health
     - playerMovement
-    - shoot
+    - shoot2
     Mirror.Components.dll:
     - Mirror.NetworkAnimator
     - Mirror.NetworkTransform
     - Mirror.NetworkTransformChild
+    Mirror.Editor.dll:
+    - Mirror.NetworkBehaviourInspector
     Mirror.dll:
     - Mirror.NetworkIdentity
     - Mirror.NetworkManager
@@ -18,8 +21,11 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnimatorStateTransitionInspector
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -71,39 +77,41 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9684}
     - Class: 114
-      Script: {instanceID: 9688}
+      Script: {instanceID: 9686}
     - Class: 114
-      Script: {instanceID: 9704}
+      Script: {instanceID: 9690}
     - Class: 114
-      Script: {instanceID: 9758}
+      Script: {instanceID: 9706}
     - Class: 114
-      Script: {instanceID: 9878}
+      Script: {instanceID: 9760}
     - Class: 114
-      Script: {instanceID: 9896}
+      Script: {instanceID: 9880}
     - Class: 114
-      Script: {instanceID: 10356}
+      Script: {instanceID: 9898}
     - Class: 114
-      Script: {instanceID: 10386}
+      Script: {instanceID: 10358}
     - Class: 114
-      Script: {instanceID: 10416}
+      Script: {instanceID: 10388}
     - Class: 114
-      Script: {instanceID: 10852}
+      Script: {instanceID: 10418}
     - Class: 114
-      Script: {instanceID: 11344}
+      Script: {instanceID: 10856}
     - Class: 114
-      Script: {instanceID: 11396}
+      Script: {instanceID: 11348}
     - Class: 114
-      Script: {instanceID: 11574}
+      Script: {instanceID: 11400}
     - Class: 114
-      Script: {instanceID: 11706}
+      Script: {instanceID: 11578}
     - Class: 114
-      Script: {instanceID: 11790}
+      Script: {instanceID: 11710}
     - Class: 114
-      Script: {instanceID: 14076}
+      Script: {instanceID: 11794}
     - Class: 114
-      Script: {instanceID: 16366}
+      Script: {instanceID: 14114}
     - Class: 114
-      Script: {instanceID: 19082}
+      Script: {instanceID: 16756}
+    - Class: 114
+      Script: {instanceID: 18810}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -123,6 +131,12 @@ ScriptsOnlyBuild:
   scriptHashData:
   - hash:
       serializedVersion: 2
+      Hash: fb606419fdf228b72b4329aed7a61753
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: health
+  - hash:
+      serializedVersion: 2
       Hash: dac362aec30e75b5bdfe3eea60cdf384
     assemblyName: Mirror.dll
     namespaceName: Mirror
@@ -135,7 +149,7 @@ ScriptsOnlyBuild:
     className: CanvasScaler
   - hash:
       serializedVersion: 2
-      Hash: 736130d6a8465095b51df73c07bff67a
+      Hash: 9ea797b1821e47a5ff40883bf7a7cd83
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: cameraControl
@@ -541,6 +555,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_SpriteAnimator
+  - hash:
+      serializedVersion: 2
+      Hash: cd80eda3cb8157542afa92bfce5b6f58
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: shoot
   - hash:
       serializedVersion: 2
       Hash: e87f50864f8a979f1228e8c69bd62658
@@ -1017,18 +1037,18 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   - hash:
       serializedVersion: 2
-      Hash: cd80eda3cb8157542afa92bfce5b6f58
+      Hash: 8fd377833c1d83609aa679e0b44daa3f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: shoot
+    className: gun
   - hash:
       serializedVersion: 2
-      Hash: fb606419fdf228b72b4329aed7a61753
+      Hash: 7c7a56f6e01291e23413efb99ce404f4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: health
+    className: shoot2
   platform: 5
   scenePathNames:
   - Assets/Scenes/movementTest.unity
-  playerPath: F:/github repositories/project-fps/minor ase project fps/builds/v0.17
-    (shoot and take damage)/minor ase project fps.exe
+  playerPath: F:/github repositories/project-fps/minor ase project fps/builds/v0.201
+    (reload shown to all clients)/minor ase project fps.exe

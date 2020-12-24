@@ -9,8 +9,6 @@ public class cameraControl : NetworkBehaviour
     public Camera cam;
     public AudioListener aL;
     public GameObject rP;
-    public Transform shootPoint;
-    public GameObject bullet;
     public float mouseSensitivity = 100;
 
     float xRotation = 0f;
@@ -39,23 +37,6 @@ public class cameraControl : NetworkBehaviour
 
             rP.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
             playerBody.Rotate(Vector3.up * mouseX);
-
-
-
-            //if (Input.GetButtonDown("Fire1"))
-            //{
-            //    Cmd_shoot();
-            //}
         }
-    }
-
-    [Command]
-    void Cmd_shoot()
-    {
-        GameObject bul = Instantiate(bullet, shootPoint.position, transform.rotation);
-        bullet bl = bul.GetComponent<bullet>();
-        bl.bulletSpeed = 5f;
-        bl.damage = 10f;
-        NetworkServer.Spawn(bul);
     }
 }
