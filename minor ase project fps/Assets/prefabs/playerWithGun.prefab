@@ -2637,7 +2637,7 @@ MonoBehaviour:
   cam: {fileID: 1831127439700563217}
   aL: {fileID: 5251449700562216630}
   rP: {fileID: 7230352118655568592}
-  mouseSensitivity: 100
+  mouseSensitivity: 200
 --- !u!114 &4697228233141734988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3136,7 +3136,7 @@ PrefabInstance:
     - target: {fileID: 9055535935281367668, guid: 01b55860e5c23c64eb41ceef6fbfeee5,
         type: 3}
       propertyPath: bulletSpeed
-      value: 5
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 9055535935281367668, guid: 01b55860e5c23c64eb41ceef6fbfeee5,
         type: 3}
@@ -3148,6 +3148,11 @@ PrefabInstance:
       propertyPath: Animator
       value: 
       objectReference: {fileID: 5120462927523030490}
+    - target: {fileID: 9055535935281367668, guid: 01b55860e5c23c64eb41ceef6fbfeee5,
+        type: 3}
+      propertyPath: reloadTime
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -1092814520272126851, guid: 01b55860e5c23c64eb41ceef6fbfeee5, type: 3}
     - {fileID: 1568571671508008511, guid: 01b55860e5c23c64eb41ceef6fbfeee5, type: 3}
