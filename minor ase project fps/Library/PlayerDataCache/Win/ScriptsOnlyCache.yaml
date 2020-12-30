@@ -7,7 +7,8 @@ ScriptsOnlyBuild:
     - gun
     - health
     - playerMovement
-    - shoot2
+    - shoot2OBJ
+    - shoot2RayCast
     Mirror.Components.dll:
     - Mirror.NetworkAnimator
     - Mirror.NetworkTransform
@@ -22,10 +23,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -76,11 +75,11 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11766}
+      Script: {instanceID: 11794}
     - Class: 114
       Script: {instanceID: 11796}
     - Class: 114
-      Script: {instanceID: 11798}
+      Script: {instanceID: 11800}
     - Class: 114
       Script: {instanceID: 11822}
     - Class: 114
@@ -98,19 +97,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12886}
     - Class: 114
-      Script: {instanceID: 13584}
+      Script: {instanceID: 12920}
     - Class: 114
-      Script: {instanceID: 14316}
+      Script: {instanceID: 13064}
     - Class: 114
-      Script: {instanceID: 14400}
+      Script: {instanceID: 13588}
     - Class: 114
-      Script: {instanceID: 14648}
+      Script: {instanceID: 14320}
     - Class: 114
-      Script: {instanceID: 14820}
+      Script: {instanceID: 14404}
     - Class: 114
-      Script: {instanceID: 17500}
+      Script: {instanceID: 14652}
     - Class: 114
-      Script: {instanceID: 25006}
+      Script: {instanceID: 14824}
+    - Class: 114
+      Script: {instanceID: 18634}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -140,12 +141,6 @@ ScriptsOnlyBuild:
     className: Button
   - hash:
       serializedVersion: 2
-      Hash: 4bc4346a71a8df53a6b106f68ef3a190
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: CanvasScaler
-  - hash:
-      serializedVersion: 2
       Hash: fb606419fdf228b72b4329aed7a61753
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -156,6 +151,12 @@ ScriptsOnlyBuild:
     assemblyName: Mirror.dll
     namespaceName: Mirror
     className: TelepathyTransport
+  - hash:
+      serializedVersion: 2
+      Hash: 4bc4346a71a8df53a6b106f68ef3a190
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: CanvasScaler
   - hash:
       serializedVersion: 2
       Hash: 9ea797b1821e47a5ff40883bf7a7cd83
@@ -191,7 +192,7 @@ ScriptsOnlyBuild:
       Hash: 7c7a56f6e01291e23413efb99ce404f4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: shoot2
+    className: shoot2OBJ
   - hash:
       serializedVersion: 2
       Hash: 9c7c87712e298256d276eb96e02a57b1
@@ -536,6 +537,12 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: destroyBullet
+  - hash:
+      serializedVersion: 2
       Hash: 6269de7b2e8700c47e4b84336de4b7eb
     assemblyName: Mirror.Examples.dll
     namespaceName: Mirror.Examples.Additive
@@ -558,6 +565,12 @@ ScriptsOnlyBuild:
     assemblyName: Mirror.Components.dll
     namespaceName: Mirror.Experimental
     className: NetworkRigidbody
+  - hash:
+      serializedVersion: 2
+      Hash: 33e1d7d3e8e2bb22b239898a97e89303
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: shoot2RayCast
   - hash:
       serializedVersion: 2
       Hash: 16a720ee1ef3f470f479041a1e75bdc1
@@ -1022,6 +1035,12 @@ ScriptsOnlyBuild:
     className: PlayerScore
   - hash:
       serializedVersion: 2
+      Hash: ac3dd2e81279b751a980a62ea4f3e9f4
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: playerList
+  - hash:
+      serializedVersion: 2
       Hash: 134322c9293c1896357cce271b819ce4
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
@@ -1110,14 +1129,8 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: destroyBullet
   platform: 5
   scenePathNames:
   - Assets/Scenes/1v1 test.unity
-  playerPath: F:/github repositories/project-fps/minor ase project fps/builds/v0.210
-    (map for 1v1 added)/minor ase project fps.exe
+  playerPath: F:/School/jaar 3/minor ase project fps/project-fps/minor ase project
+    fps/builds/v0.221 (raycast shooting and taking damage)/minor ase project fps.exe

@@ -30,19 +30,20 @@ public class health : NetworkBehaviour
             bullet bul = other.GetComponent<bullet>();
             float bulDamage = bul.damage;
 
-            CmdGotShot(bulDamage);
+            //CmdGotShot(bulDamage);
         }
     }
 
-    [Command]
-    void CmdGotShot(float bulDamage)
+    [Server]
+    public void gotShot(float damage)
     {
-        RpcGotShot(bulDamage);
+        RpcGotShot(damage);
     }
 
     [ClientRpc]
     void RpcGotShot(float bulDamage)
     {
+        Debug.Log("test3");
         hp -= bulDamage;
         if (hasAuthority)
         {
