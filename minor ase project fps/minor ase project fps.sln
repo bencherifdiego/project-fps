@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mirror.Weaver", "Mirror.Wea
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mirror.Editor", "Mirror.Editor.csproj", "{BCA0E8C5-2DC7-B49A-A851-F6641E9E0530}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{65B225F2-99E9-D02D-5B65-5FC8634831BB}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mirror.CompilerSymbols", "Mirror.CompilerSymbols.csproj", "{95EF298C-A52E-273A-2BD1-EDD4BA1B57FE}"
 EndProject
 Global
@@ -93,6 +95,10 @@ Global
 		{BCA0E8C5-2DC7-B49A-A851-F6641E9E0530}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCA0E8C5-2DC7-B49A-A851-F6641E9E0530}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCA0E8C5-2DC7-B49A-A851-F6641E9E0530}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65B225F2-99E9-D02D-5B65-5FC8634831BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65B225F2-99E9-D02D-5B65-5FC8634831BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65B225F2-99E9-D02D-5B65-5FC8634831BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65B225F2-99E9-D02D-5B65-5FC8634831BB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{95EF298C-A52E-273A-2BD1-EDD4BA1B57FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{95EF298C-A52E-273A-2BD1-EDD4BA1B57FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95EF298C-A52E-273A-2BD1-EDD4BA1B57FE}.Release|Any CPU.ActiveCfg = Release|Any CPU

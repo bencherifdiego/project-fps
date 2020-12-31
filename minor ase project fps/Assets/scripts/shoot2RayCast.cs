@@ -12,6 +12,8 @@ public class shoot2RayCast : NetworkBehaviour
     public Transform shootPoint;
     public GameObject cam;
 
+    public GameObject bulletHoleGraphic;
+
     health health;
 
     [Client]
@@ -52,105 +54,64 @@ public class shoot2RayCast : NetworkBehaviour
         if (gun.shooting)
         {
             Debug.Log("shooting");
-            CmdShoot(gun.readyToShoot, gun.reloading, gun.bulletsLeft, gun.damage, cam.transform.position, cam.transform.forward, gun.range);
+            CmdShoot(gun.readyToShoot, gun.reloading, gun.bulletsLeft, gun.damage, cam.transform.position, cam.transform.forward, gun.range, this.gameObject.GetComponent<NetworkIdentity>().netId);
         }
     }
 
     [Command]
-    void CmdShoot(bool readyToShoot, bool reloading, int bulletsLeft, float damage, Vector3 firePoint, Vector3 dir, float range)
+    void CmdShoot(bool readyToShoot, bool reloading, int bulletsLeft, float damage, Vector3 firePoint, Vector3 dir, float range, uint id)
     {
         Debug.Log("test");
         Debug.Log(readyToShoot);
         if (readyToShoot && !reloading && bulletsLeft > 0)
         {
-            //shoot
-            //RpcShoot();
-
             RaycastHit rayHit;
 
-            //if (hasAuthority)
+            readyToShoot = false;
+
+            if (Physics.Raycast(firePoint, dir, out rayHit, range))
             {
-                readyToShoot = false;
+                Debug.Log(rayHit.collider);
 
-                if (Physics.Raycast(firePoint, dir, out rayHit, range))
+                if (rayHit.collider.gameObject.layer == 11)
                 {
-                    Debug.Log(rayHit.collider);
-
-                    if (rayHit.collider.gameObject.layer == 11)
-                    {
-                        //CmdShot(rayHit.collider.gameObject.GetComponent<NetworkIdentity>().netId);
-
-                        NetworkIdentity.spawned[rayHit.collider.gameObject.GetComponent<NetworkIdentity>().netId].SendMessage("gotShot", damage);
-                    }
+                    NetworkIdentity.spawned[rayHit.collider.gameObject.GetComponent<NetworkIdentity>().netId].SendMessage("gotShot", damage);
                 }
-                RpcTest();
+                else
+                {
+                    Quaternion hitRotation = Quaternion.FromToRotation(Vector3.forward, rayHit.normal);
+                    GameObject bulletHole = Instantiate(bulletHoleGraphic, rayHit.point, hitRotation);
+                    NetworkServer.Spawn(bulletHole);
+                }
             }
+            RpcShoot();
         }
     }
     [ClientRpc]
-    void RpcTest()
+    void RpcPlaceDecal(Vector3 normal, Vector3 point, uint id)
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        GameObject player = null;
+        foreach (GameObject x in players)
+        {
+            if (x.GetComponent<NetworkIdentity>().netId == id)
+            {
+                player = x;
+            }
+        }
+
+        Quaternion hitRotation = Quaternion.FromToRotation(Vector3.forward, normal);
+        GameObject bulletHole = Instantiate(player.GetComponent<shoot2RayCast>().gun.bulletHoleGraphic, point, hitRotation);
+        NetworkServer.Spawn(bulletHole);
+    }
+    [ClientRpc]
+    void RpcShoot()
     {
         if (!hasAuthority) { return; }
         gun.bulletsLeft--;
         StartCoroutine(resetShot());
     }
 
-    [ClientRpc]
-    void RpcShoot()
-    {
-        RaycastHit rayHit;
-
-        if (hasAuthority)
-        {
-            gun.readyToShoot = false;
-
-            if (Physics.Raycast(cam.transform.position, cam.transform.forward, out rayHit, gun.range))
-            {
-                Debug.Log(rayHit.collider);
-
-                if (rayHit.collider.gameObject.layer == 11)
-                {
-                    CmdShot(rayHit.collider.gameObject.GetComponent<NetworkIdentity>().netId);
-                }
-            }
-
-
-
-            gun.bulletsLeft--;
-            StartCoroutine(resetShot());
-        }
-    }
-    [Command]
-    void CmdShot(uint id)
-    {
-        //RpcShot(id);
-
-        Debug.Log(id);
-        Debug.Log("test1");
-        try
-        {
-            //GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-            //GameObject player = null;
-            //foreach (GameObject x in players)
-            //{
-            //    if (x.GetComponent<NetworkIdentity>().netId == id)
-            //    {
-            //        player = x;
-            //    }
-            //}
-            //player.GetComponent<NetworkIdentity>().SendMessage("CmdGotShot", gun.damage);
-
-            //player.GetComponent<health>().CmdGotShot(gun.damage);
-
-            NetworkIdentity.spawned[id].SendMessage("gotShot", gun.damage);
-        }
-        catch { }
-    }
-    [ClientRpc]
-    void RpcShot(uint id)
-    {
-        
-    }
     [Client]
     IEnumerator resetShot()
     {
