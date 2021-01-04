@@ -6,9 +6,9 @@ public class gun : MonoBehaviour
 {
     //gun stats
     public float damage;
-    public float timeBetweenShooting, spread, range, reloadTime, timeBetweenShots, bulletSpeed;
+    public float timeBetweenShooting, horizontalSpread, verticalSpread, range, reloadTime, timeBetweenShots, bulletSpeed;
     public int magazineSize, bulletsPerTap;
-    public bool allowButtonHold;
+    public bool allowButtonHold, isShotgun;
     public int bulletsLeft, bulletsShot;
 
     //bools

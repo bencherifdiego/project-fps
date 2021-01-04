@@ -54,62 +54,62 @@ public class shoot2RayCast : NetworkBehaviour
         if (gun.shooting)
         {
             Debug.Log("shooting");
-            CmdShoot(gun.readyToShoot, gun.reloading, gun.bulletsLeft, gun.damage, cam.transform.position, cam.transform.forward, gun.range, this.gameObject.GetComponent<NetworkIdentity>().netId);
+            CmdShoot(gun.readyToShoot, gun.reloading, gun.bulletsLeft, gun.damage, cam.transform.position, cam.transform.forward, gun.range, this.gameObject.GetComponent<NetworkIdentity>().netId, gun.horizontalSpread, gun.verticalSpread, gun.bulletsPerTap, gun.timeBetweenShots);
         }
     }
 
     [Command]
-    void CmdShoot(bool readyToShoot, bool reloading, int bulletsLeft, float damage, Vector3 firePoint, Vector3 dir, float range, uint id)
+    void CmdShoot(bool readyToShoot, bool reloading, int bulletsLeft, float damage, Vector3 firePoint, Vector3 dir, float range, uint id, float horizontalSpread, float verticalSpread, int bulletsPerTap, float timeBetweenShots)
     {
-        Debug.Log("test");
-        Debug.Log(readyToShoot);
-        if (readyToShoot && !reloading && bulletsLeft > 0)
-        {
-            RaycastHit rayHit;
-
-            readyToShoot = false;
-
-            if (Physics.Raycast(firePoint, dir, out rayHit, range))
-            {
-                Debug.Log(rayHit.collider);
-
-                if (rayHit.collider.gameObject.layer == 11)
-                {
-                    NetworkIdentity.spawned[rayHit.collider.gameObject.GetComponent<NetworkIdentity>().netId].SendMessage("gotShot", damage);
-                }
-                else
-                {
-                    Quaternion hitRotation = Quaternion.FromToRotation(Vector3.forward, rayHit.normal);
-                    GameObject bulletHole = Instantiate(bulletHoleGraphic, rayHit.point, hitRotation);
-                    NetworkServer.Spawn(bulletHole);
-                }
-            }
-            RpcShoot();
-        }
+        StartCoroutine(serverShoot(readyToShoot, reloading, bulletsLeft, damage, firePoint, dir, range, id, horizontalSpread, verticalSpread, bulletsPerTap, timeBetweenShots));
     }
-    [ClientRpc]
-    void RpcPlaceDecal(Vector3 normal, Vector3 point, uint id)
+    [Server]
+    IEnumerator serverShoot(bool readyToShoot, bool reloading, int bulletsLeft, float damage, Vector3 firePoint, Vector3 dir, float range, uint id, float horizontalSpread, float verticalSpread, int bulletsPerTap, float timeBetweenShots)
     {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        GameObject player = null;
-        foreach (GameObject x in players)
+        for (int i = 0; i < bulletsPerTap; i++)
         {
-            if (x.GetComponent<NetworkIdentity>().netId == id)
+            Debug.Log(i);
+            Debug.Log(bulletsPerTap);
+            if (readyToShoot && !reloading && bulletsLeft > 0)
             {
-                player = x;
+                RaycastHit rayHit;
+
+                readyToShoot = false;
+
+                float x = Random.Range(-horizontalSpread, horizontalSpread);
+                float y = Random.Range(-verticalSpread, verticalSpread);
+
+                dir = dir + new Vector3(x, y, 0);
+
+                if (Physics.Raycast(firePoint, dir, out rayHit, range))
+                {
+                    Debug.Log(rayHit.collider);
+
+                    if (rayHit.collider.gameObject.layer == 11)
+                    {
+                        NetworkIdentity.spawned[rayHit.collider.gameObject.GetComponent<NetworkIdentity>().netId].SendMessage("gotShot", damage);
+                    }
+                    else
+                    {
+                        Quaternion hitRotation = Quaternion.FromToRotation(Vector3.forward, rayHit.normal);
+                        GameObject bulletHole = Instantiate(bulletHoleGraphic, rayHit.point, hitRotation);
+                        NetworkServer.Spawn(bulletHole);
+                    }
+                }
+                RpcShoot();
+
+                yield return new WaitForSeconds(timeBetweenShots);
+                Debug.Log("reset");
+                readyToShoot = true;
             }
         }
-
-        Quaternion hitRotation = Quaternion.FromToRotation(Vector3.forward, normal);
-        GameObject bulletHole = Instantiate(player.GetComponent<shoot2RayCast>().gun.bulletHoleGraphic, point, hitRotation);
-        NetworkServer.Spawn(bulletHole);
     }
     [ClientRpc]
     void RpcShoot()
     {
         if (!hasAuthority) { return; }
         gun.bulletsLeft--;
-        StartCoroutine(resetShot());
+        //StartCoroutine(resetShot());
     }
 
     [Client]

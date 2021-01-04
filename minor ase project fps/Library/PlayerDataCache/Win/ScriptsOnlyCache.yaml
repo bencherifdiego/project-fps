@@ -24,8 +24,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -74,45 +76,45 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11820}
+      Script: {instanceID: 11824}
     - Class: 114
-      Script: {instanceID: 11856}
+      Script: {instanceID: 11860}
     - Class: 114
-      Script: {instanceID: 11858}
+      Script: {instanceID: 11862}
     - Class: 114
-      Script: {instanceID: 11884}
+      Script: {instanceID: 11888}
     - Class: 114
-      Script: {instanceID: 11968}
+      Script: {instanceID: 11972}
     - Class: 114
-      Script: {instanceID: 11982}
-    - Class: 114
-      Script: {instanceID: 12182}
+      Script: {instanceID: 11986}
     - Class: 114
       Script: {instanceID: 12186}
     - Class: 114
-      Script: {instanceID: 12202}
+      Script: {instanceID: 12190}
     - Class: 114
-      Script: {instanceID: 12878}
+      Script: {instanceID: 12206}
     - Class: 114
-      Script: {instanceID: 12888}
+      Script: {instanceID: 12884}
     - Class: 114
-      Script: {instanceID: 12910}
+      Script: {instanceID: 12894}
     - Class: 114
-      Script: {instanceID: 13016}
+      Script: {instanceID: 12916}
     - Class: 114
-      Script: {instanceID: 13204}
+      Script: {instanceID: 13022}
     - Class: 114
-      Script: {instanceID: 13766}
+      Script: {instanceID: 13210}
     - Class: 114
-      Script: {instanceID: 14540}
+      Script: {instanceID: 13774}
     - Class: 114
-      Script: {instanceID: 14628}
+      Script: {instanceID: 14548}
     - Class: 114
-      Script: {instanceID: 14888}
+      Script: {instanceID: 14636}
     - Class: 114
-      Script: {instanceID: 15070}
+      Script: {instanceID: 14896}
     - Class: 114
-      Script: {instanceID: 24182}
+      Script: {instanceID: 15078}
+    - Class: 114
+      Script: {instanceID: 25740}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -554,7 +556,7 @@ ScriptsOnlyBuild:
     className: Player
   - hash:
       serializedVersion: 2
-      Hash: 245cc540c6ebe4b99e6b16f03595906a
+      Hash: a4e9486fc8d0bd72c122ba8b265ab199
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: gun
@@ -1282,4 +1284,5 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/1v1 test.unity
   playerPath: F:/School/jaar 3/minor ase project fps/project-fps/minor ase project
-    fps/builds/v0.231 (fix bulletholegraphic for clients)/minor ase project fps.exe
+    fps/builds/v0.240 (bulletspread and shooting multiple bullets per tap)/minor
+    ase project fps.exe
