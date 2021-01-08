@@ -2427,6 +2427,7 @@ GameObject:
   - component: {fileID: 4385384521214641889}
   - component: {fileID: 4410694675661722419}
   - component: {fileID: 92468622171016179}
+  - component: {fileID: 4599845637321048438}
   m_Layer: 11
   m_Name: playerWithGun
   m_TagString: Player
@@ -2694,6 +2695,20 @@ MonoBehaviour:
   syncInterval: 0
   clientAuthority: 1
   animator: {fileID: 5120462927523030490}
+--- !u!114 &4599845637321048438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8286768942717887082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70b9cabcf3d40394590472a9b3f2503b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
 --- !u!1 &8302723143016470031
 GameObject:
   m_ObjectHideFlags: 0
@@ -3097,15 +3112,15 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 5935111999136015266}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &5671137633593705241 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2084653480082596027, guid: 01b55860e5c23c64eb41ceef6fbfeee5,
-    type: 3}
-  m_PrefabInstance: {fileID: 5935111999136015266}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8712411913434509578 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3077494097226502824, guid: 01b55860e5c23c64eb41ceef6fbfeee5,
+    type: 3}
+  m_PrefabInstance: {fileID: 5935111999136015266}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5671137633593705241 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2084653480082596027, guid: 01b55860e5c23c64eb41ceef6fbfeee5,
     type: 3}
   m_PrefabInstance: {fileID: 5935111999136015266}
   m_PrefabAsset: {fileID: 0}

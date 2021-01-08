@@ -53,7 +53,6 @@ public class shoot2RayCast : NetworkBehaviour
 
         if (gun.shooting)
         {
-            Debug.Log("shooting");
             CmdShoot(gun.readyToShoot, gun.reloading, gun.bulletsLeft, gun.damage, cam.transform.position, cam.transform.forward, gun.range, this.gameObject.GetComponent<NetworkIdentity>().netId, gun.horizontalSpread, gun.verticalSpread, gun.bulletsPerTap, gun.timeBetweenShots);
         }
     }
@@ -81,11 +80,26 @@ public class shoot2RayCast : NetworkBehaviour
 
                 dir = dir + new Vector3(x, y, 0);
 
-                if (Physics.Raycast(firePoint, dir, out rayHit, range))
+                Debug.Log(gameObject.layer);
+                int layer = ~(1 << gameObject.layer);
+
+                if (Physics.Raycast(firePoint, dir, out rayHit, range, layer))
                 {
                     Debug.Log(rayHit.collider);
 
-                    if (rayHit.collider.gameObject.layer == 11)
+                    int enemyLayer = 11;
+                    switch (gameObject.layer)
+                    {
+                        case 13:
+                            enemyLayer = 14;
+                            break;
+                        case 14:
+                            enemyLayer = 13;
+                            break;
+                    }
+                        
+
+                    if (rayHit.collider.gameObject.layer == enemyLayer)
                     {
                         NetworkIdentity.spawned[rayHit.collider.gameObject.GetComponent<NetworkIdentity>().netId].SendMessage("gotShot", damage);
                     }

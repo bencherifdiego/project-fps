@@ -2,10 +2,13 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - DecalDestroyer
+    - assignTeams
     - bullet
     - cameraControl
     - gun
     - health
+    - menuTestChangeScene
+    - mode1v1
     - playerMovement
     - shoot2OBJ
     - shoot2RayCast
@@ -24,18 +27,20 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
     UnityEngine.UI.dll:
+    - UnityEngine.EventSystems.EventSystem
+    - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
+    - UnityEngine.UI.Image
     - UnityEngine.UI.Text
   sceneClasses:
     Assets/Scenes/1v1 test.unity:
@@ -76,11 +81,11 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11824}
+      Script: {instanceID: 11858}
     - Class: 114
       Script: {instanceID: 11860}
     - Class: 114
-      Script: {instanceID: 11862}
+      Script: {instanceID: 11864}
     - Class: 114
       Script: {instanceID: 11888}
     - Class: 114
@@ -100,6 +105,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12916}
     - Class: 114
+      Script: {instanceID: 12958}
+    - Class: 114
       Script: {instanceID: 13022}
     - Class: 114
       Script: {instanceID: 13210}
@@ -110,11 +117,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 14636}
     - Class: 114
-      Script: {instanceID: 14896}
+      Script: {instanceID: 14638}
     - Class: 114
-      Script: {instanceID: 15078}
+      Script: {instanceID: 14898}
     - Class: 114
-      Script: {instanceID: 25740}
+      Script: {instanceID: 15080}
+    - Class: 114
+      Script: {instanceID: 15204}
+    - Class: 114
+      Script: {instanceID: 20702}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -139,6 +150,59 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 850595691
       Script: {instanceID: 0}
+    Assets/Scenes/menuTest.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 11822}
+    - Class: 114
+      Script: {instanceID: 11864}
+    - Class: 114
+      Script: {instanceID: 12206}
+    - Class: 114
+      Script: {instanceID: 12262}
+    - Class: 114
+      Script: {instanceID: 12958}
+    - Class: 114
+      Script: {instanceID: 14548}
+    - Class: 114
+      Script: {instanceID: 15204}
+    - Class: 114
+      Script: {instanceID: 19820}
+    - Class: 114
+      Script: {instanceID: 72972}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
   scriptHashData:
   - hash:
       serializedVersion: 2
@@ -148,19 +212,13 @@ ScriptsOnlyBuild:
     className: Button
   - hash:
       serializedVersion: 2
-      Hash: 4bc4346a71a8df53a6b106f68ef3a190
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: CanvasScaler
-  - hash:
-      serializedVersion: 2
       Hash: a1f19ad47d3094e235f21b74dfc423a8
     assemblyName: Unity.Postprocessing.Runtime.dll
     namespaceName: UnityEngine.Rendering.PostProcessing
     className: PostProcessLayer
   - hash:
       serializedVersion: 2
-      Hash: fb606419fdf228b72b4329aed7a61753
+      Hash: 78674c41b449a78b770efc2620d06a4e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: health
@@ -170,6 +228,12 @@ ScriptsOnlyBuild:
     assemblyName: Mirror.dll
     namespaceName: Mirror
     className: TelepathyTransport
+  - hash:
+      serializedVersion: 2
+      Hash: 4bc4346a71a8df53a6b106f68ef3a190
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: CanvasScaler
   - hash:
       serializedVersion: 2
       Hash: 9ea797b1821e47a5ff40883bf7a7cd83
@@ -556,7 +620,7 @@ ScriptsOnlyBuild:
     className: Player
   - hash:
       serializedVersion: 2
-      Hash: a4e9486fc8d0bd72c122ba8b265ab199
+      Hash: 8d6b609d965c930a3c2d7f1b2d5832ba
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: gun
@@ -1042,6 +1106,12 @@ ScriptsOnlyBuild:
     className: PlayerMovement
   - hash:
       serializedVersion: 2
+      Hash: 6fd2bb55b3ee5edb6040a1c5bccd0e07
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: assignTeams
+  - hash:
+      serializedVersion: 2
       Hash: f0a97e65bffb6f90f36a2963210ff0a6
     assemblyName: Mirror.dll
     namespaceName: Mirror
@@ -1280,9 +1350,21 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: b96b24383d6eadef73f27925019439b2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: mode1v1
+  - hash:
+      serializedVersion: 2
+      Hash: 36a9618c1a352c4916548052460abccd
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: menuTestChangeScene
   platform: 5
   scenePathNames:
+  - Assets/Scenes/menuTest.unity
   - Assets/Scenes/1v1 test.unity
-  playerPath: F:/School/jaar 3/minor ase project fps/project-fps/minor ase project
-    fps/builds/v0.240 (bulletspread and shooting multiple bullets per tap)/minor
-    ase project fps.exe
+  playerPath: F:/github repositories/project-fps/minor ase project fps/builds/v0.263
+    (demo build test menu)/minor ase project fps.exe

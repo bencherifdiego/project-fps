@@ -79,8 +79,11 @@ public class playerMovement : NetworkBehaviour
     [ClientRpc]
     void RpcMove(Vector3 move, Vector3 velocity)
     {
-        controller.Move(move * movevementSpeed * Time.deltaTime);
+        if (hasAuthority)
+        {
+            controller.Move(move * movevementSpeed * Time.deltaTime);
 
-        controller.Move(velocity * Time.deltaTime);
+            controller.Move(velocity * Time.deltaTime);
+        }
     }
 }

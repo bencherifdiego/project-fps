@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
@@ -9,10 +9,14 @@ public class health : NetworkBehaviour
     public float hp = 100f;
     public Text hpText;
 
+    public GameObject[] spawns;
+
     private void Start()
     {
         if (hasAuthority)
         {
+            gameObject.name = "player";
+            spawns = GameObject.FindGameObjectsWithTag("Respawn");
             hpText.text = hp.ToString();
         }
     }
@@ -37,17 +41,45 @@ public class health : NetworkBehaviour
     [Server]
     public void gotShot(float damage)
     {
-        RpcGotShot(damage);
+        hp -= damage;
+        mode1v1 mode = GameObject.FindGameObjectWithTag("mode").GetComponent<mode1v1>();
+        if (hp <= 0)
+        {
+            mode.onPlayerDeath(gameObject.GetComponent<NetworkIdentity>().netId);
+            RpcRespawn(gameObject.GetComponent<NetworkIdentity>().netId);
+        }
+        else
+        {
+            RpcGotShot(hp);
+        }
     }
 
     [ClientRpc]
-    void RpcGotShot(float bulDamage)
+    void RpcGotShot(float hp)
     {
-        Debug.Log("test3");
-        hp -= bulDamage;
         if (hasAuthority)
         {
             hpText.text = hp.ToString();
         }
+    }
+
+    [ClientRpc]
+    void RpcRespawn(uint id)
+    {
+        hp = 100f;
+
+        if (hasAuthority)
+        {
+            hpText.text = hp.ToString();
+        }
+
+        int rnd = Random.Range(0, spawns.Length);
+
+        //transform.position = new Vector3(0, 1.2f, 0);
+        NetworkIdentity.spawned[id].gameObject.GetComponent<CharacterController>().enabled = false;
+        NetworkIdentity.spawned[id].gameObject.transform.position = new Vector3(0, 1.2f, 0);
+        NetworkIdentity.spawned[id].gameObject.GetComponent<CharacterController>().enabled = true;
+        //gameObject.transform.position = new Vector3(0, 1.2f, 0);
+        //this.transform.position.Set(0, 1.2f, 0);
     }
 }

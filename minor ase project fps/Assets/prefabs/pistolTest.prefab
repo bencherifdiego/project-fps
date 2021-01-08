@@ -106,7 +106,8 @@ MonoBehaviour:
   bulletSpeed: 50
   magazineSize: 17
   bulletsPerTap: 1
-  allowButtonHold: 1
+  allowButtonHold: 0
+  isShotgun: 0
   bulletsLeft: 0
   bulletsShot: 0
   shooting: 0
