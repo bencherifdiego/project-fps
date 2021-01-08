@@ -99,33 +99,33 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12206}
     - Class: 114
-      Script: {instanceID: 12884}
+      Script: {instanceID: 12886}
     - Class: 114
-      Script: {instanceID: 12894}
+      Script: {instanceID: 12896}
     - Class: 114
-      Script: {instanceID: 12916}
+      Script: {instanceID: 12918}
     - Class: 114
-      Script: {instanceID: 12958}
+      Script: {instanceID: 12960}
     - Class: 114
-      Script: {instanceID: 13022}
+      Script: {instanceID: 13024}
     - Class: 114
-      Script: {instanceID: 13210}
+      Script: {instanceID: 13212}
     - Class: 114
-      Script: {instanceID: 13774}
+      Script: {instanceID: 13776}
     - Class: 114
-      Script: {instanceID: 14548}
+      Script: {instanceID: 14032}
     - Class: 114
-      Script: {instanceID: 14636}
+      Script: {instanceID: 14552}
     - Class: 114
-      Script: {instanceID: 14638}
+      Script: {instanceID: 14640}
     - Class: 114
-      Script: {instanceID: 14898}
+      Script: {instanceID: 14642}
     - Class: 114
-      Script: {instanceID: 15080}
+      Script: {instanceID: 14902}
     - Class: 114
-      Script: {instanceID: 15204}
+      Script: {instanceID: 15084}
     - Class: 114
-      Script: {instanceID: 20702}
+      Script: {instanceID: 15208}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -176,17 +176,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12206}
     - Class: 114
-      Script: {instanceID: 12262}
+      Script: {instanceID: 12252}
     - Class: 114
-      Script: {instanceID: 12958}
+      Script: {instanceID: 12264}
     - Class: 114
-      Script: {instanceID: 14548}
+      Script: {instanceID: 12960}
     - Class: 114
-      Script: {instanceID: 15204}
+      Script: {instanceID: 14552}
     - Class: 114
-      Script: {instanceID: 19820}
+      Script: {instanceID: 15208}
     - Class: 114
-      Script: {instanceID: 72972}
+      Script: {instanceID: 17332}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -390,6 +390,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: TouchInputModule
+  - hash:
+      serializedVersion: 2
+      Hash: 36a9618c1a352c4916548052460abccd
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: menuTestChangeScene
   - hash:
       serializedVersion: 2
       Hash: a6e561615949734e9f12f9b61661f43e
@@ -944,6 +950,12 @@ ScriptsOnlyBuild:
     className: AdditiveNetworkManager
   - hash:
       serializedVersion: 2
+      Hash: b96b24383d6eadef73f27925019439b2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: mode1v1
+  - hash:
+      serializedVersion: 2
       Hash: f7bb6096199e0cf058d5d69878184cf4
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -1350,21 +1362,9 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: b96b24383d6eadef73f27925019439b2
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: mode1v1
-  - hash:
-      serializedVersion: 2
-      Hash: 36a9618c1a352c4916548052460abccd
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: menuTestChangeScene
   platform: 5
   scenePathNames:
   - Assets/Scenes/menuTest.unity
   - Assets/Scenes/1v1 test.unity
-  playerPath: F:/github repositories/project-fps/minor ase project fps/builds/v0.263
-    (demo build test menu)/minor ase project fps.exe
+  playerPath: F:/github repositories/project-fps/minor ase project fps/builds/v0.264
+    (fixed spawns, now spawns at random respawnpoint)/minor ase project fps.exe

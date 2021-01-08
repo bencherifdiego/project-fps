@@ -9,14 +9,18 @@ public class health : NetworkBehaviour
     public float hp = 100f;
     public Text hpText;
 
-    public GameObject[] spawns;
+    public List<GameObject> spawns;
 
     private void Start()
     {
         if (hasAuthority)
         {
             gameObject.name = "player";
-            spawns = GameObject.FindGameObjectsWithTag("Respawn");
+            //foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Respawn"))
+            //{
+            //    spawns.Add(obj);
+            //}
+            //spawns = GameObject.FindGameObjectsWithTag("Respawn");
             hpText.text = hp.ToString();
         }
     }
@@ -73,11 +77,20 @@ public class health : NetworkBehaviour
             hpText.text = hp.ToString();
         }
 
-        int rnd = Random.Range(0, spawns.Length);
+        //int rnd = Random.Range(0, spawns.Count);
 
         //transform.position = new Vector3(0, 1.2f, 0);
         NetworkIdentity.spawned[id].gameObject.GetComponent<CharacterController>().enabled = false;
-        NetworkIdentity.spawned[id].gameObject.transform.position = new Vector3(0, 1.2f, 0);
+        switch(gameObject.layer)
+        {
+            case 13:
+                NetworkIdentity.spawned[id].gameObject.transform.position = new Vector3(15, 1.2f, -15);
+                break;
+            case 14:
+                NetworkIdentity.spawned[id].gameObject.transform.position = new Vector3(-15, 1.2f, 15);
+                break;
+        }
+        
         NetworkIdentity.spawned[id].gameObject.GetComponent<CharacterController>().enabled = true;
         //gameObject.transform.position = new Vector3(0, 1.2f, 0);
         //this.transform.position.Set(0, 1.2f, 0);
