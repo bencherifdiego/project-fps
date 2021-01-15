@@ -9,19 +9,54 @@ public class health : NetworkBehaviour
     public float hp = 100f;
     public Text hpText;
 
+    public List<GameObject> guns;
+    public NetworkTransformChild tChild;
+    public NetworkAnimator NAnimator;
     public List<GameObject> spawns;
+
+    public Animator animator = null;
+    public List<Rigidbody> ragdollBodies;
+    public List<Collider> ragdollColliders;
+    public bool isDead = false;
 
     private void Start()
     {
+        Rigidbody[] rb = GetComponentsInChildren<Rigidbody>();
+        Collider[] col = GetComponentsInChildren<Collider>();
+
+        foreach (Rigidbody RB in rb)
+        {
+            ragdollBodies.Add(RB);
+        }
+        foreach (Collider COL in col)
+        {
+            ragdollColliders.Add(COL);
+        }
+
+        ragdollColliders.RemoveAt(0);
+
         if (hasAuthority)
         {
             gameObject.name = "player";
-            //foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Respawn"))
-            //{
-            //    spawns.Add(obj);
-            //}
-            //spawns = GameObject.FindGameObjectsWithTag("Respawn");
             hpText.text = hp.ToString();
+        }
+    }
+
+    [Command]
+    void CmdToggleRagdoll(bool state)
+    {
+        isDead = state;
+        RpcToggleRagdoll(state);
+    }
+
+    [ClientRpc]
+    void RpcToggleRagdoll(bool state)
+    {
+        animator.enabled = !state;
+
+        foreach(Rigidbody rb in ragdollBodies)
+        {
+            rb.isKinematic = !state;
         }
     }
 
@@ -30,32 +65,27 @@ public class health : NetworkBehaviour
         
     }
 
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "bullet")
-        {
-            bullet bul = other.GetComponent<bullet>();
-            float bulDamage = bul.damage;
-
-            //CmdGotShot(bulDamage);
-        }
-    }
-
     [Server]
     public void gotShot(float damage)
     {
         hp -= damage;
         mode1v1 mode = GameObject.FindGameObjectWithTag("mode").GetComponent<mode1v1>();
-        if (hp <= 0)
+        if (hp <= 0 && !mode.RoundOver)
         {
+            RpcGotShot(hp);
+            RpcStartRagdoll(true);
             mode.onPlayerDeath(gameObject.GetComponent<NetworkIdentity>().netId);
-            RpcRespawn(gameObject.GetComponent<NetworkIdentity>().netId);
         }
-        else
+        else if (hp > 0)
         {
             RpcGotShot(hp);
         }
+    }
+    [ClientRpc]
+    void RpcStartRagdoll(bool state)
+    {
+        if (!hasAuthority) { return; }
+        CmdToggleRagdoll(state);
     }
 
     [ClientRpc]
@@ -68,8 +98,32 @@ public class health : NetworkBehaviour
     }
 
     [ClientRpc]
+    void RpcNewGun(int gun)
+    {
+        if (!hasAuthority) { return; }
+
+        tChild.target = guns[gun].transform;
+        NAnimator.animator = guns[gun].GetComponent<Animator>();
+
+        shoot2RayCast src = GetComponent<shoot2RayCast>();
+
+        src.gunOBJ.active = false;
+        src.gunOBJ = guns[gun];
+        src.gunOBJ.active = true;
+
+        
+
+        src.gun = guns[gun].GetComponent<gun>();
+
+        src.gun.bulletsLeft = src.gun.magazineSize;
+        src.gun.readyToShoot = true;
+    }
+
+    [ClientRpc]
     void RpcRespawn(uint id)
     {
+        RpcStartRagdoll(false);
+
         hp = 100f;
 
         if (hasAuthority)
@@ -77,9 +131,6 @@ public class health : NetworkBehaviour
             hpText.text = hp.ToString();
         }
 
-        //int rnd = Random.Range(0, spawns.Count);
-
-        //transform.position = new Vector3(0, 1.2f, 0);
         NetworkIdentity.spawned[id].gameObject.GetComponent<CharacterController>().enabled = false;
         switch(gameObject.layer)
         {
@@ -92,7 +143,5 @@ public class health : NetworkBehaviour
         }
         
         NetworkIdentity.spawned[id].gameObject.GetComponent<CharacterController>().enabled = true;
-        //gameObject.transform.position = new Vector3(0, 1.2f, 0);
-        //this.transform.position.Set(0, 1.2f, 0);
     }
 }

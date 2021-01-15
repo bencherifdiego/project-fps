@@ -55,6 +55,8 @@ public class playerMovement : NetworkBehaviour
     [Command]
     void CmdMove(float x, float z, bool jump)
     {
+        if (GetComponent<health>().isDead) { return; }
+
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (isGrounded && velocity.y < 0)

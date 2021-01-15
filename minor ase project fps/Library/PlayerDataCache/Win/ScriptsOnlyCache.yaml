@@ -2,6 +2,7 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - DecalDestroyer
+    - allGuns
     - assignTeams
     - bullet
     - cameraControl
@@ -62,6 +63,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
     - Class: 64
       Script: {instanceID: 0}
     - Class: 65
@@ -111,28 +114,36 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13212}
     - Class: 114
-      Script: {instanceID: 13776}
+      Script: {instanceID: 13244}
     - Class: 114
-      Script: {instanceID: 14032}
+      Script: {instanceID: 13778}
     - Class: 114
-      Script: {instanceID: 14552}
+      Script: {instanceID: 14034}
     - Class: 114
-      Script: {instanceID: 14640}
+      Script: {instanceID: 14554}
     - Class: 114
       Script: {instanceID: 14642}
     - Class: 114
-      Script: {instanceID: 14902}
+      Script: {instanceID: 14644}
     - Class: 114
-      Script: {instanceID: 15084}
+      Script: {instanceID: 14904}
     - Class: 114
-      Script: {instanceID: 15208}
+      Script: {instanceID: 15086}
+    - Class: 114
+      Script: {instanceID: 15210}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
       Script: {instanceID: 0}
+    - Class: 135
+      Script: {instanceID: 0}
+    - Class: 136
+      Script: {instanceID: 0}
     - Class: 137
       Script: {instanceID: 0}
     - Class: 143
+      Script: {instanceID: 0}
+    - Class: 144
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -182,11 +193,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12960}
     - Class: 114
-      Script: {instanceID: 14552}
+      Script: {instanceID: 14554}
     - Class: 114
-      Script: {instanceID: 15208}
+      Script: {instanceID: 15210}
     - Class: 114
-      Script: {instanceID: 17332}
+      Script: {instanceID: 24622}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -218,7 +229,7 @@ ScriptsOnlyBuild:
     className: PostProcessLayer
   - hash:
       serializedVersion: 2
-      Hash: 78674c41b449a78b770efc2620d06a4e
+      Hash: 638661d3fa83b810a07f761e29a642da
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: health
@@ -740,6 +751,12 @@ ScriptsOnlyBuild:
     className: shoot2RayCast
   - hash:
       serializedVersion: 2
+      Hash: 38d8a006e1f449979919fc4424d8d1f5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: allGuns
+  - hash:
+      serializedVersion: 2
       Hash: 8429f5e2e74458d387d20325476dffbf
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -950,7 +967,7 @@ ScriptsOnlyBuild:
     className: AdditiveNetworkManager
   - hash:
       serializedVersion: 2
-      Hash: b96b24383d6eadef73f27925019439b2
+      Hash: 4ce3df7e889e8f0ca7e50c2faa227db3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: mode1v1
@@ -1366,5 +1383,6 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/menuTest.unity
   - Assets/Scenes/1v1 test.unity
-  playerPath: F:/github repositories/project-fps/minor ase project fps/builds/v0.264
-    (fixed spawns, now spawns at random respawnpoint)/minor ase project fps.exe
+  playerPath: F:/School/jaar 3/minor ase project fps/project-fps/minor ase project
+    fps/builds/v0.294 (fix client not ragdolling on death, fix taking damage after
+    round end)/minor ase project fps.exe

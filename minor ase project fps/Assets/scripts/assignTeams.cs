@@ -21,14 +21,16 @@ public class assignTeams : NetworkBehaviour
         bool isBlue = false;
         foreach (KeyValuePair<uint, NetworkIdentity> ni in NetworkIdentity.spawned)
         {
-            try
-            {
-                ni.Value.SendMessage("SAssign", isBlue);
-            }
-            catch
-            {
+            //try
+            //{
+            //    ni.Value.SendMessage("SAssign", isBlue);
+            //}
+            //catch
+            //{
 
-            }
+            //}
+
+            SAssign(isBlue, ni.Key);
 
             if (isBlue)
             {
@@ -42,15 +44,17 @@ public class assignTeams : NetworkBehaviour
     }
 
     [Server]
-    void SAssign(bool isBlue)
+    void SAssign(bool isBlue, uint id)
     {
         if (isBlue)
         {
-            RpcAssign(gameObject.GetComponent<NetworkIdentity>().netId, 13);
+            RpcAssign(id, 13);
+            //RpcAssign(gameObject.GetComponent<NetworkIdentity>().netId, 13);
         }
         else
         {
-            RpcAssign(gameObject.GetComponent<NetworkIdentity>().netId, 14);
+            RpcAssign(id, 14);
+            //RpcAssign(gameObject.GetComponent<NetworkIdentity>().netId, 14);
         }
     }
 
@@ -58,6 +62,15 @@ public class assignTeams : NetworkBehaviour
     void assign(GameObject obj, int layer)
     {
         obj.layer = layer;
+
+        foreach (Transform child in obj.transform)
+        {
+            if (child == null)
+            {
+                continue;
+            }
+            assign(child.gameObject, layer);
+        }
     }
 
     [ClientRpc]
