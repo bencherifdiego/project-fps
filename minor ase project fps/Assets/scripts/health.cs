@@ -1,4 +1,4 @@
-﻿ using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
@@ -8,6 +8,7 @@ public class health : NetworkBehaviour
 {
     public float hp = 100f;
     public Text hpText;
+    public Text ammoText;
 
     public List<GameObject> guns;
     public NetworkTransformChild tChild;
@@ -54,7 +55,7 @@ public class health : NetworkBehaviour
     {
         animator.enabled = !state;
 
-        foreach(Rigidbody rb in ragdollBodies)
+        foreach (Rigidbody rb in ragdollBodies)
         {
             rb.isKinematic = !state;
         }
@@ -62,7 +63,7 @@ public class health : NetworkBehaviour
 
     void Update()
     {
-        
+
     }
 
     [Server]
@@ -100,8 +101,6 @@ public class health : NetworkBehaviour
     [ClientRpc]
     void RpcNewGun(int gun)
     {
-        if (!hasAuthority) { return; }
-
         tChild.target = guns[gun].transform;
         NAnimator.animator = guns[gun].GetComponent<Animator>();
 
@@ -111,12 +110,15 @@ public class health : NetworkBehaviour
         src.gunOBJ = guns[gun];
         src.gunOBJ.active = true;
 
-        
-
         src.gun = guns[gun].GetComponent<gun>();
 
         src.gun.bulletsLeft = src.gun.magazineSize;
         src.gun.readyToShoot = true;
+
+        if (hasAuthority)
+        {
+            ammoText.text = GetComponent<shoot2RayCast>().gun.bulletsLeft.ToString() + " / " + GetComponent<shoot2RayCast>().gun.magazineSize.ToString();
+        }
     }
 
     [ClientRpc]
@@ -132,7 +134,7 @@ public class health : NetworkBehaviour
         }
 
         NetworkIdentity.spawned[id].gameObject.GetComponent<CharacterController>().enabled = false;
-        switch(gameObject.layer)
+        switch (gameObject.layer)
         {
             case 13:
                 NetworkIdentity.spawned[id].gameObject.transform.position = new Vector3(15, 1.2f, -15);
@@ -141,7 +143,7 @@ public class health : NetworkBehaviour
                 NetworkIdentity.spawned[id].gameObject.transform.position = new Vector3(-15, 1.2f, 15);
                 break;
         }
-        
+
         NetworkIdentity.spawned[id].gameObject.GetComponent<CharacterController>().enabled = true;
     }
 }

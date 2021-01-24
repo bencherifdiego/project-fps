@@ -15,6 +15,7 @@ public class menuTestChangeScene : MonoBehaviour
 
     void change()
     {
+        gameObject.SetActive(false);
         SceneManager.LoadScene("1v1 test");
     }
 }

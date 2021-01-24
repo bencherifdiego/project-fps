@@ -13,19 +13,23 @@ public class shoot2RayCast : NetworkBehaviour
     public GameObject cam;
 
     public GameObject bulletHoleGraphic;
+    public GameObject muzzleFlash;
 
     health health;
 
     [Client]
     void Start()
     {
+        gun = gunOBJ.GetComponent<gun>();
+
         if (!hasAuthority) { return; }
 
         health = this.GetComponent<health>();
 
-        gun = gunOBJ.GetComponent<gun>();
         gun.bulletsLeft = gun.magazineSize;
         gun.readyToShoot = true;
+
+        GetComponent<health>().ammoText.text = gun.bulletsLeft.ToString() + " / " + gun.magazineSize.ToString();
 
         Debug.Log("Test");
     }
@@ -51,21 +55,21 @@ public class shoot2RayCast : NetworkBehaviour
 
         if (gun.shooting)
         {
-            CmdShoot(gun.readyToShoot, gun.reloading, gun.bulletsLeft, gun.damage, cam.transform.position, cam.transform.forward, gun.range, this.gameObject.GetComponent<NetworkIdentity>().netId, gun.horizontalSpread, gun.verticalSpread, gun.bulletsPerTap, gun.timeBetweenShots, gun.isShotgun, gun.timeBetweenShooting);
+            CmdShoot(gun.readyToShoot, gun.reloading, gun.bulletsLeft, gun.damage, cam.transform.position, cam.transform.forward, gun.range, this.gameObject.GetComponent<NetworkIdentity>().netId, gun.horizontalSpread, gun.verticalSpread, gun.bulletsPerTap, gun.timeBetweenShots, gun.isShotgun, gun.timeBetweenShooting, gun.shootPoint);
 
             gun.readyToShoot = false;
         }
     }
 
     [Command]
-    void CmdShoot(bool readyToShoot, bool reloading, int bulletsLeft, float damage, Vector3 firePoint, Vector3 dir, float range, uint id, float horizontalSpread, float verticalSpread, int bulletsPerTap, float timeBetweenShots, bool isShotgun, float timeBetweenShooting)
+    void CmdShoot(bool readyToShoot, bool reloading, int bulletsLeft, float damage, Vector3 firePoint, Vector3 dir, float range, uint id, float horizontalSpread, float verticalSpread, int bulletsPerTap, float timeBetweenShots, bool isShotgun, float timeBetweenShooting, Transform shootPoint)
     {
         if (GetComponent<health>().isDead) { return; }
 
-        StartCoroutine(serverShoot(readyToShoot, reloading, bulletsLeft, damage, firePoint, dir, range, id, horizontalSpread, verticalSpread, bulletsPerTap, timeBetweenShots, isShotgun, timeBetweenShooting));
+        StartCoroutine(serverShoot(readyToShoot, reloading, bulletsLeft, damage, firePoint, dir, range, id, horizontalSpread, verticalSpread, bulletsPerTap, timeBetweenShots, isShotgun, timeBetweenShooting, shootPoint));
     }
     [Server]
-    IEnumerator serverShoot(bool readyToShoot, bool reloading, int bulletsLeft, float damage, Vector3 firePoint, Vector3 dir, float range, uint id, float horizontalSpread, float verticalSpread, int bulletsPerTap, float timeBetweenShots, bool isShotgun, float timeBetweenShooting)
+    IEnumerator serverShoot(bool readyToShoot, bool reloading, int bulletsLeft, float damage, Vector3 firePoint, Vector3 dir, float range, uint id, float horizontalSpread, float verticalSpread, int bulletsPerTap, float timeBetweenShots, bool isShotgun, float timeBetweenShooting, Transform shootPoint)
     {
         if (isShotgun)
         {
@@ -111,7 +115,11 @@ public class shoot2RayCast : NetworkBehaviour
                     {
                         Quaternion hitRotation = Quaternion.FromToRotation(Vector3.forward, rayHit.normal);
                         GameObject bulletHole = Instantiate(bulletHoleGraphic, rayHit.point, hitRotation);
+
+                        //GameObject muzleFlase = Instantiate(muzzleFlash, shootPoint);
+
                         NetworkServer.Spawn(bulletHole);
+                        //NetworkServer.Spawn(muzleFlase);
                     }
                 }
                 if (!isShotgun)
@@ -121,12 +129,12 @@ public class shoot2RayCast : NetworkBehaviour
                 }
                 
             }
-
-            yield return new WaitForSeconds(timeBetweenShooting);
             if (isShotgun)
             {
                 RpcShoot();
             }
+
+            yield return new WaitForSeconds(timeBetweenShooting);
 
             RpcSetReadyToShoot(true);
         }
@@ -140,8 +148,11 @@ public class shoot2RayCast : NetworkBehaviour
     [ClientRpc]
     void RpcShoot()
     {
+        gun.muzzleflash.Play();
         if (!hasAuthority) { return; }
         gun.bulletsLeft--;
+
+        GetComponent<health>().ammoText.text = gun.bulletsLeft.ToString() + " / " + gun.magazineSize.ToString();
     }
 
     [Command]
@@ -169,5 +180,10 @@ public class shoot2RayCast : NetworkBehaviour
         gun.reloading = false;
         gun.readyToShoot = true;
         gun.Animator.SetBool("isReloading", false);
+
+        if (hasAuthority)
+        {
+            GetComponent<health>().ammoText.text = gun.bulletsLeft.ToString() + " / " + gun.magazineSize.ToString();
+        }
     }
 }

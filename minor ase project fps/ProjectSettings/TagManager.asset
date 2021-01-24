@@ -8,6 +8,11 @@ TagManager:
   - NetworkManager
   - mode
   - allGuns
+  - ground
+  - wall
+  - ceiling
+  - agent
+  - player
   layers:
   - Default
   - TransparentFX
@@ -21,7 +26,7 @@ TagManager:
   - 
   - ground
   - player
-  - enemy
+  - agent
   - blue
   - red
   - 

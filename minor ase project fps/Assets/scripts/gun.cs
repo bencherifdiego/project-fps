@@ -18,4 +18,5 @@ public class gun : MonoBehaviour
     public Transform shootPoint;
     public Animator Animator;
     public GameObject bulletHoleGraphic;
+    public ParticleSystem muzzleflash;
 }
