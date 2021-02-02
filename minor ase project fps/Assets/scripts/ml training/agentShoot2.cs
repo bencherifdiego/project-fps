@@ -35,8 +35,8 @@ public class agentShoot2 : Agent
     {
         sensor.AddObservation(transform.rotation);
         sensor.AddObservation(transform.localPosition);
-        sensor.AddObservation(targetTransform.localRotation);
-        sensor.AddObservation(Vector3.Distance(transform.position, targetTransform.position));
+        sensor.AddObservation(targetTransform.localPosition);
+        sensor.AddObservation(Vector3.Distance(transform.localPosition, targetTransform.localPosition));
         sensor.AddObservation(rps);
     }
 
@@ -57,13 +57,13 @@ public class agentShoot2 : Agent
             AddReward(100f);
             EndEpisode();
         }
-        //else if (distance > 15)
+        //else if (distance > 20)
         //{
         //    AddReward(-200f);
         //    EndEpisode();
         //}
 
-        AddReward(-0.05f);
+        AddReward(-0.01f);
 
         
 
@@ -103,7 +103,7 @@ public class agentShoot2 : Agent
 
     public override void OnEpisodeBegin()
     {
-        //transform.localPosition = startPos;
+        transform.localPosition = startPos;
 
         if (!firstEpisode)
         {

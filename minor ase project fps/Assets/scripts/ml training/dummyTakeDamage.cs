@@ -67,7 +67,7 @@ public class dummyTakeDamage : MonoBehaviour
                     closeToWall = true;
                 }
             }
-            if (Vector3.Distance(pos, agent.transform.localPosition) > 4 && !closeToWall)
+            if (Vector3.Distance(pos, agent.transform.localPosition) > 4 && !closeToWall && Vector3.Distance(pos, agent.transform.localPosition) < 25)
             {
                 transform.localPosition = pos;
                 break;
