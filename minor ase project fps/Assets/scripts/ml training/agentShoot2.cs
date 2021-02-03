@@ -103,7 +103,7 @@ public class agentShoot2 : Agent
 
     public override void OnEpisodeBegin()
     {
-        transform.localPosition = startPos;
+        //transform.localPosition = startPos;
 
         if (!firstEpisode)
         {

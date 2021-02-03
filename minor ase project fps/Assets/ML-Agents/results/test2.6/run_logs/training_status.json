@@ -1,0 +1,42 @@
+{
+    "shooter": {
+        "checkpoints": [
+            {
+                "steps": 999982,
+                "file_path": "results\\test2.6\\shooter\\shooter-999982.onnx",
+                "reward": 86.64520927270253,
+                "creation_time": 1612307111.642204
+            },
+            {
+                "steps": 1999992,
+                "file_path": "results\\test2.6\\shooter\\shooter-1999992.onnx",
+                "reward": 95.51583433151245,
+                "creation_time": 1612309567.92815
+            },
+            {
+                "steps": 2999991,
+                "file_path": "results\\test2.6\\shooter\\shooter-2999991.onnx",
+                "reward": 82.77767486904942,
+                "creation_time": 1612312025.5789082
+            },
+            {
+                "steps": 3333227,
+                "file_path": "results\\test2.6\\shooter\\shooter-3333227.onnx",
+                "reward": 70.55555706553989,
+                "creation_time": 1612312839.9408755
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 3333227,
+            "file_path": "results\\test2.6\\shooter.onnx",
+            "reward": 70.55555706553989,
+            "creation_time": 1612312839.9408755
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.23.0",
+        "torch_version": "1.7.1+cpu",
+        "tensorflow_version": -1
+    }
+}

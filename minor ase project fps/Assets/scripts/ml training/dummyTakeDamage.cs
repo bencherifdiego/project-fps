@@ -62,7 +62,7 @@ public class dummyTakeDamage : MonoBehaviour
             foreach (GameObject wall in walls)
             {
                 float dist = Vector3.Distance(wall.GetComponent<Collider>().ClosestPoint(pos), pos);
-                if (dist <= 1.5)
+                if (dist <= 2)
                 {
                     closeToWall = true;
                 }

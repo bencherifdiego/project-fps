@@ -1,0 +1,24 @@
+{
+    "shooter": {
+        "checkpoints": [
+            {
+                "steps": 441757,
+                "file_path": "results\\test2.3\\shooter\\shooter-441757.onnx",
+                "reward": 96.82686831003213,
+                "creation_time": 1612280539.7439725
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 441757,
+            "file_path": "results\\test2.3\\shooter.onnx",
+            "reward": 96.82686831003213,
+            "creation_time": 1612280539.7439725
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.23.0",
+        "torch_version": "1.7.1+cpu",
+        "tensorflow_version": -1
+    }
+}

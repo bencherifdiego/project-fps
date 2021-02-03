@@ -2,17 +2,29 @@
     "shooter": {
         "checkpoints": [
             {
-                "steps": 7680,
-                "file_path": "results\\test2.1\\shooter\\shooter-7680.onnx",
-                "reward": null,
-                "creation_time": 1611674591.7979622
+                "steps": 999994,
+                "file_path": "results\\test2.1\\shooter\\shooter-999994.onnx",
+                "reward": 2.1587503999471664,
+                "creation_time": 1612273928.6177168
+            },
+            {
+                "steps": 1999979,
+                "file_path": "results\\test2.1\\shooter\\shooter-1999979.onnx",
+                "reward": 97.60595292136783,
+                "creation_time": 1612276177.055365
+            },
+            {
+                "steps": 2006841,
+                "file_path": "results\\test2.1\\shooter\\shooter-2006841.onnx",
+                "reward": 97.37888881895277,
+                "creation_time": 1612276195.1886182
             }
         ],
         "final_checkpoint": {
-            "steps": 7680,
+            "steps": 2006841,
             "file_path": "results\\test2.1\\shooter.onnx",
-            "reward": null,
-            "creation_time": 1611674591.7979622
+            "reward": 97.37888881895277,
+            "creation_time": 1612276195.1886182
         }
     },
     "metadata": {
